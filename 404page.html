@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Stackly</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .error-code {
+            font-family: 'Outfit', sans-serif;
+            font-size: 10rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-message {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            z-index: 2;
+        }
+
+        .error-description {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+        
+        /* Add some abstract floating glowing orbs for premium feel */
+        .glow-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+        
+        .orb-1 {
+            background: var(--primary);
+            top: 20%;
+            left: 25%;
+        }
+        
+        .orb-2 {
+            background: var(--secondary);
+            bottom: 20%;
+            right: 25%;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, -50px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <!-- <nav id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="images/logo.webp" alt="Stackly Logo" style="height: 40px;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">Start Project</a>
+        </div>
+    </nav> -->
+
+    <!-- Error Section -->
+    <section class="error-section">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        
+        <h1 class="error-code reveal active">404</h1>
+        <h2 class="error-message reveal active">Page Under Construction</h2>
+        <p class="error-description reveal active">The page you are looking for is currently being built or doesn't exist. Please check back later or return to the homepage.</p>
+        <div class="reveal active">
+            <a href="index.html" class="btn btn-primary"><i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Return Home</a>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
