@@ -1,10 +1,16 @@
+// Force scroll to top on refresh
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // Preloader
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
         setTimeout(() => {
             preloader.classList.add('hidden');
-        }, 3000); // 3 seconds to match the reference site progress bar
+        }, 1500); // 1.5 seconds for a faster loading experience
     }
 });
 
@@ -65,25 +71,43 @@ if (statsSection) {
 }
 
 // CTA VALIDATION
-const ctaSubmit = document.getElementById("cta-submit");
+const ctaForm = document.getElementById("cta-form");
 const ctaEmail = document.getElementById("cta-email");
+const ctaError = document.getElementById("cta-error");
 
-if (ctaSubmit && ctaEmail) {
-    ctaSubmit.addEventListener("click", () => {
-        if (ctaEmail.value.trim() === "") {
-            ctaEmail.placeholder = "Please enter your email id!";
-            ctaEmail.classList.add("error");
-            
-            // Reset error state after 3 seconds
-            setTimeout(() => {
-                ctaEmail.placeholder = "Enter your email address";
-                ctaEmail.classList.remove("error");
-            }, 3000);
+if (ctaForm && ctaEmail && ctaError) {
+    ctaForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const emailValue = ctaEmail.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailValue === "") {
+            ctaError.textContent = "Please enter your email address";
+            showError();
+        } else if (!emailPattern.test(emailValue)) {
+            ctaError.textContent = "Please enter a valid email address";
+            showError();
         } else {
-            // Redirect to 404page.html when email is entered
+            // Success - Redirect or show success message
             window.location.href = "404page.html";
         }
     });
+
+    function showError() {
+        ctaEmail.classList.add("error");
+        ctaError.classList.add("show");
+
+        // Vibration effect for error
+        ctaForm.classList.add("shake");
+        setTimeout(() => ctaForm.classList.remove("shake"), 500);
+
+        // Reset error state after 3 seconds
+        setTimeout(() => {
+            ctaEmail.classList.remove("error");
+            ctaError.classList.remove("show");
+        }, 3000);
+    }
 }
 
 // MOBILE SIDEBAR
@@ -124,5 +148,33 @@ document.querySelectorAll('a').forEach(link => {
             e.preventDefault();
             window.location.href = "404page.html";
         }
+    });
+});
+
+// HERO PARALLAX
+const hero = document.querySelector('.hero');
+const heroGlow = document.querySelector('.hero-glow');
+
+if (hero && heroGlow) {
+    hero.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        
+        const moveX = (clientX - innerWidth / 2) / 30;
+        const moveY = (clientY - innerHeight / 2) / 30;
+        
+        heroGlow.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+}
+
+// GLASS CARD MOUSE FOLLOW GLOW
+const glassCards = document.querySelectorAll('.glass-card');
+glassCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const { left, top } = card.getBoundingClientRect();
+        const x = e.clientX - left;
+        const y = e.clientY - top;
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
     });
 });
