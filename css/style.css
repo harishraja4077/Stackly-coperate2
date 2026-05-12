@@ -138,12 +138,12 @@ body {
 }
 
 .section-padding {
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 @media (max-width: 768px) {
     .section-padding {
-        padding: 60px 0;
+        padding: 50px 0;
     }
 }
 
@@ -605,7 +605,7 @@ body {
 
 /* Brands Section */
 .brands-section {
-    padding: 60px 0;
+    padding: 40px 0;
     background: rgba(255, 255, 255, 0.02);
     overflow: hidden;
     border-top: 1px solid var(--glass-border);
@@ -647,7 +647,7 @@ body {
 /* Services */
 .section-title {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .section-title h2 {
@@ -716,7 +716,7 @@ body {
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
 }
 
 .contact-form .input-group {
@@ -743,8 +743,8 @@ body {
 /* Footer */
 footer {
     position: relative;
-    padding: 5rem 0 2rem;
-    margin-top: 6rem;
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
     background: linear-gradient(to bottom,
             rgba(255, 255, 255, 0.01),
             rgba(255, 255, 255, 0.02));
@@ -773,7 +773,7 @@ footer::before {
 .footer-grid {
     display: grid;
     grid-template-columns: 2.2fr 1fr 1fr 1fr;
-    gap: 5rem;
+    gap: 3rem;
     align-items: flex-start;
     padding-bottom: 3rem;
 }
@@ -1625,5 +1625,65 @@ footer::before {
     .btn-premium-glow {
         justify-content: center;
         padding: 15px !important;
+    }
+}
+
+/* FLOATING 3D ELEMENTS */
+.floating-elements {
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 400px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.float-item {
+    position: absolute;
+    font-size: 3rem;
+    color: var(--primary);
+    opacity: 0.15;
+    filter: drop-shadow(0 0 10px var(--primary-glow));
+    animation: float3D 6s infinite ease-in-out;
+}
+
+.item-1 {
+    top: 0;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.item-2 {
+    top: 40%;
+    left: 60%;
+    animation-delay: -2s;
+    color: var(--secondary);
+}
+
+.item-3 {
+    top: 80%;
+    left: 10%;
+    animation-delay: -4s;
+}
+
+@keyframes float3D {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.15;
+    }
+
+    50% {
+        transform: translate(20px, -40px) rotate(15deg);
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 992px) {
+    .floating-elements {
+        display: none;
     }
 }

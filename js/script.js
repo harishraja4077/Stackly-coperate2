@@ -159,10 +159,10 @@ if (hero && heroGlow) {
     hero.addEventListener('mousemove', (e) => {
         const { clientX, clientY } = e;
         const { innerWidth, innerHeight } = window;
-        
+
         const moveX = (clientX - innerWidth / 2) / 30;
         const moveY = (clientY - innerHeight / 2) / 30;
-        
+
         heroGlow.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
 }
